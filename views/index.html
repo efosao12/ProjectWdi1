@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puppies</title>
+</head>
+<body>
+  
+<a href='/forum'>View all Posts</a>
+
+  <form action="/forum/create" method="POST">
+    <label>
+      TITLE:
+      <input type="text" name="title" />
+    </label>
+    <label>
+      AUTHOR:
+      <input type="text" name="author" />
+    </label> 
+    <label>
+      VOTE:
+      <input type="text" name="vote" />
+    </label>
+    
+      
+      FORUM POST:
+      <textarea name="content" rows="28" cols="58">
+      insert your post here.
+      </textarea> 
+      
+        <button>Create</button>
+  </form>
+</body>
+</html>

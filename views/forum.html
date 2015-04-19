@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FORUM POSTS</title>
+</head>
+<body>
+  <a href='/'>Create a new post</a>
+
+  <ul>
+    {{#posts}}
+      <li><a href="/forum/{{id}}">{{title}} - {{author}}</a></li>
+    {{/posts}}
+  </ul>
+</body>
+</html>

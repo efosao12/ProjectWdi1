@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Show Topics</title>
+</head>
+<body>
+<a href='/forum'>All Posts</a>
+  <form method="POST" action="/forum/{{id}}?_method=PUT">
+    TITLE:
+    <input type="text" name="title" value="{{title}}">
+    
+    AUTHOR:
+    <input type="text" name="author" value="{{author}}">
+    
+    FORUM POST:
+      <input type="text" name="content" value="{{body}}" rows="28" cols="58">
+
+      <textarea name="content" rows="28" cols="58">
+      "{{body}}".
+      </textarea>
+    <button type="submit">Update</button>
+  </form>
+
+  <form method="POST" action="/forum/{{id}}?_method=DELETE">
+    <button type="submit">Delete</button>
+  </form>
+</body>
+</html>
