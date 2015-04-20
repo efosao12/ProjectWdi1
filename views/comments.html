@@ -8,13 +8,8 @@
 <a href='/forum'>All Posts</a> 
 <a href='/forum/comments'>All Comments</a>
 
-  <form method="POST" action="/forum/{{id}}?_method=PUT">
-    TITLE:
-    <input type="text" name="title" value="{{title}}">
-    
-    AUTHOR:
-    <input type="text" name="author" value="{{author}}">
-    
+  <form method="POST" action="/forum/comments/{{id}}?_method=PUT">
+  
     FORUM POST:
       <input type="text" name="content" value="{{body}}" rows="28" cols="58">
 
@@ -24,7 +19,7 @@
     <button type="submit">Update</button>
   </form>
 
-  <form method="POST" action="/forum/{{id}}?_method=DELETE">
+  <form method="POST" action="/forum/comments{{id}}?_method=DELETE">
     <button type="submit">Delete</button>
   </form>
 </body>

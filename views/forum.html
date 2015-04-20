@@ -8,9 +8,19 @@
   <a href='/'>Create a new post</a>
 
   <ul>
+  <a href='/forum/comments'>View all comments</a>
     {{#posts}}
       <li><a href="/forum/{{id}}">{{title}} - {{author}}</a></li>
     {{/posts}}
-  </ul>
+  </ul>  
+  
+  <ul>
+    
+   {{#CommentPosts}}
+     <li>
+       <a href="/forum/comments/{{id}}">{{body}} - {{location}}</a>
+     </li>
+   {{/CommentPosts}}
+   </ul>
 </body>
 </html>

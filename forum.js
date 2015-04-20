@@ -25,15 +25,27 @@ var markedContent = marked(req.body.content)
 }); 
 
 
-//works
 app.get('/forum', function(req, res) {
   var template = fs.readFileSync('./views/forum.html', 'utf8');
 
   db.all('SELECT * FROM topics;', function(err, topics) {
     var html = Mustache.render(template, {posts: topics});
-    res.send(html);
+    res.send(html); 
+     
   })
-});
+}); 
+
+app.get('/forum/comments',function(req, res){
+  var template = fs.readFileSync('./views/forum.html', 'utf8'); 
+
+  db.all('SELECT * FROM comments;', function(err, comments){
+    var html2 = Mustache.render(template, {CommentPosts: comments});
+    res.send(html2);  
+  })
+}); 
+
+
+
 //works
 app.get('/forum/:id', function(req, res){
   var id = req.params.id;
@@ -61,7 +73,42 @@ app.delete('/forum/:id', function(req, res){
   var id = req.params.id;
   db.run("DELETE FROM topics WHERE id = " + id + ";");
   res.redirect("/forum");
+}); 
+
+
+//comments 
+
+app.get('/forum/comments/:id', function(req, res){
+  var id = req.params.id;
+  db.all("SELECT * FROM comments WHERE topic_id = " + id + ";", {}, function(err, comments){
+    fs.readFile('./views/comments.html', 'utf8', function(err, html){
+      console.log(comments);
+      
+      var renderedHTML = Mustache.render(html, comments);
+      res.send(renderedHTML);
+    });
+  });
 });
+//works
+app.put('/forum/comments/:id', function(req, res){
+  var id = req.params.id;
+  var posts = req.body;
+
+  db.run("UPDATE comments SET body = '" + posts.content + "' WHERE topic_id = " + id + ";");
+    
+  res.redirect('/forum');
+});
+
+//works
+app.delete('/forum/comments/:id', function(req, res){
+  var id = req.params.id;
+  db.run("DELETE FROM comments WHERE id = " + id + ";");
+  res.redirect("/forum");
+});
+
+
+
+
 
 app.listen(3000, function() {
   console.log("LISTENING!");
