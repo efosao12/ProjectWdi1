@@ -11,10 +11,10 @@
   <form method="POST" action="/forum/comments/{{id}}?_method=PUT">
   
     FORUM POST:
-      <input type="text" name="content" value="{{body}}" rows="28" cols="58">
+      <input type="text" name="content" value="{{comments}}" rows="28" cols="58">
 
       <textarea name="content" rows="28" cols="58">
-      "{{body}}".
+      "{{comments}}".
       </textarea>
     <button type="submit">Update</button>
   </form>

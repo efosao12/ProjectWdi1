@@ -49,6 +49,8 @@ app.get('/forum/comments',function(req, res){
 //works
 app.get('/forum/:id', function(req, res){
   var id = req.params.id;
+  
+
   db.all("SELECT * FROM topics WHERE id = " + id + ";", {}, function(err, topic){
     fs.readFile('./views/show.html', 'utf8', function(err, html){
       console.log(topic);
@@ -80,11 +82,13 @@ app.delete('/forum/:id', function(req, res){
 
 app.get('/forum/comments/:id', function(req, res){
   var id = req.params.id;
-  db.all("SELECT * FROM comments WHERE topic_id = " + id + ";", {}, function(err, comments){
+  db.all("SELECT body FROM comments WHERE id = " + id + ";", {}, function(err, comments){
+
+    var body = comments[0].body
+
     fs.readFile('./views/comments.html', 'utf8', function(err, html){
-      console.log(comments);
-      
-      var renderedHTML = Mustache.render(html, comments);
+
+      var renderedHTML = Mustache.render(html, {comments: body});
       res.send(renderedHTML);
     });
   });
@@ -93,17 +97,17 @@ app.get('/forum/comments/:id', function(req, res){
 app.put('/forum/comments/:id', function(req, res){
   var id = req.params.id;
   var posts = req.body;
-
-  db.run("UPDATE comments SET body = '" + posts.content + "' WHERE topic_id = " + id + ";");
+console.log(posts);
+  // db.run("UPDATE comments SET body = '" + posts.content + "' WHERE topic_id = " + id + ";");
     
-  res.redirect('/forum');
+  // res.redirect('/forum/comments/:id');
 });
 
 //works
 app.delete('/forum/comments/:id', function(req, res){
   var id = req.params.id;
   db.run("DELETE FROM comments WHERE id = " + id + ";");
-  res.redirect("/forum");
+  res.redirect("/forum/comments/:id");
 });
 
 
