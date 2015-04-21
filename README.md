@@ -6,7 +6,7 @@ This app allows users to post topics within a forum environment for the public t
 
 A user should be able to access this forum :
 ```bash
-$ 104.236.247.60:3000
+$ 104.131.89.8
 Listeningg
 ```
 ```bash
