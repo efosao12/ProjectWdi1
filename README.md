@@ -9,6 +9,10 @@ A user should be able to access this forum :
 $ 104.236.247.60:3000
 Listeningg
 ```
+```bash
+$ node forum.js
+```
+to access.
 
 A user should be able to view all the posts.
 
